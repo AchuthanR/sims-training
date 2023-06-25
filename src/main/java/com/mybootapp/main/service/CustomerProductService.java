@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.mybootapp.main.exception.ResourceNotFoundException;
 import com.mybootapp.main.model.CustomerProduct;
-import com.mybootapp.main.model.InwardRegister;
 import com.mybootapp.main.repository.CustomerProductRepository;
 
 @Service

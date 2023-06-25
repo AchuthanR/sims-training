@@ -95,5 +95,10 @@ public class GodownController {
 		godownService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
+	
+	@GetMapping("/report")
+	public List<Godown> godownReport() {
+		return godownService.getAll();
+	}
 
 }
