@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mybootapp.main.exception.ResourceNotFoundException;
 import com.mybootapp.main.model.Manager;
 import com.mybootapp.main.repository.ManagerRepository;
 
@@ -23,14 +24,18 @@ public class ManagerService {
 		return managerRepository.findAll();
 	}
 
-	public Manager getById(int managerId) {
-		Optional<Manager> managerFound = managerRepository.findById(managerId);
+	public Manager getById(int id) throws ResourceNotFoundException {
+		Optional<Manager> managerFound = managerRepository.findById(id);
 
 		if (managerFound.isEmpty()) {
-			return null;
+			throw new ResourceNotFoundException("Invalid ID given");
 		}
 
 		return managerFound.get();
+	}
+
+	public void delete(int id) {
+		managerRepository.deleteById(id);
 	}
 
 }

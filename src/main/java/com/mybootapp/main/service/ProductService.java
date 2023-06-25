@@ -1,10 +1,12 @@
 package com.mybootapp.main.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mybootapp.main.exception.ResourceNotFoundException;
 import com.mybootapp.main.model.Product;
 import com.mybootapp.main.repository.ProductRepository;
 
@@ -18,14 +20,22 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 
-	public Product getById(int productId) {
-		Optional<Product> optional = productRepository.findById(productId);
+	public List<Product> getAll() {
+		return productRepository.findAll();
+	}
+
+	public Product getById(int id) throws ResourceNotFoundException {
+		Optional<Product> optional = productRepository.findById(id);
 		
 		if (optional.isEmpty()) {
-			return null;
+			throw new ResourceNotFoundException("Invalid ID given");
 		}
 		
 		return optional.get();
+	}
+	
+	public void delete(int id) {
+		productRepository.deleteById(id);
 	}
 
 }

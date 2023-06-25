@@ -21,7 +21,7 @@ public class CustomerProduct {
 	@ManyToOne
 	private Product product;
 
-	private int quantityPuchased;
+	private int quantityPurchased;
 
 	private LocalDate dateOfPurchase;
 
@@ -49,12 +49,12 @@ public class CustomerProduct {
 		this.product = product;
 	}
 
-	public int getQuantityPuchased() {
-		return quantityPuchased;
+	public int getQuantityPurchased() {
+		return quantityPurchased;
 	}
 
-	public void setQuantityPuchased(int quantityPuchased) {
-		this.quantityPuchased = quantityPuchased;
+	public void setQuantityPurchased(int quantityPuchased) {
+		this.quantityPurchased = quantityPuchased;
 	}
 
 	public LocalDate getDateOfPurchase() {

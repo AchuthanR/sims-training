@@ -1,11 +1,14 @@
 package com.mybootapp.main.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.mybootapp.main.exception.ResourceNotFoundException;
 import com.mybootapp.main.model.User;
 import com.mybootapp.main.repository.UserRepository;
 
@@ -23,6 +26,20 @@ public class UserService implements UserDetailsService {
 	
 	public User insert(User user) {
 		return userRepository.save(user);
+	}
+	
+	public User getById(int id) throws ResourceNotFoundException {
+		Optional<User> userFound = userRepository.findById(id);
+		
+		if (userFound.isEmpty()) {
+			throw new ResourceNotFoundException("Invalid ID given");
+		}
+		
+		return userFound.get();
+	}
+
+	public void delete(int id) {
+		userRepository.deleteById(id);
 	}
 	
 }
